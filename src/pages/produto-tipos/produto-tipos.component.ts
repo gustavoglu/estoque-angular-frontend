@@ -43,7 +43,7 @@ export class ProdutoTiposComponent implements OnInit {
 
   first: number = 0;
   page: number = 1;
-  limit: number = 3;
+  limit: number = 10;
   total: number = 0;
   items: ProductTypeModel[] = [];
   itemSelected: ProductTypeModel | null = null;
