@@ -1,1 +1,34 @@
-/* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css"; /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  font-family: "Quicksand", serif;
+  padding: 0px;
+}
+
+.title {
+  font-size: xx-large;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.subtitle {
+    font-size:larger;
+    margin-bottom: 30px;
+    font-weight: bold;
+  }
+
+.input-error-message {
+  color: indianred;
+}
+
+.table-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  gap: 10px;
+}
+
+.td-actions {
+  text-align: right;
+}

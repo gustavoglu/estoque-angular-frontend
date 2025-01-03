@@ -1,0 +1,92 @@
+<p-confirm-dialog key="positionDialog" position="center" />
+<p-toast />
+<div class="title">Produto</div>
+
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <p-progressbar
+    *ngIf="isLoading"
+    mode="indeterminate"
+    [style]="{ height: '4px' }"
+  />
+  <div class="form-content">
+    <label for="description">Descrição</label>
+    <input
+      pInputText
+      id="description"
+      formControlName="description"
+      aria-describedby="description-help"
+    />
+    <div
+      *ngIf="
+        formGroup.get('description')?.invalid &&
+        (formGroup.get('description')?.dirty ||
+          formGroup.get('description')?.touched)
+      "
+    >
+      <div *ngIf="formGroup.get('description')?.errors?.required">
+        <small class="input-error-message" id="description-help"
+          >* Campo obrigatório</small
+        >
+      </div>
+      <div *ngIf="formGroup.get('description')?.errors?.maxlength">
+        <small class="input-error-message" id="description-help"
+          >* Este campo poder ter no máximo 150 caracteres</small
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="form-content">
+    <label for="price">Preço</label>
+    <p-inputnumber
+      type="number"
+      id="price"
+      formControlName="price"
+      aria-describedby="price-help"
+    />
+  </div>
+  <div class="form-content">
+    <label for="price">Tipo de Produto</label>
+    <p-select
+      formControlName="productType"
+      [options]="productTypes"
+      optionLabel="description"
+      placeholder="Tipo de Produto"
+      class="w-full md:w-56"
+      [loading]="productTypeSelectIsLoading"
+    />
+    <div
+      *ngIf="
+        formGroup.get('productType')?.invalid &&
+        (formGroup.get('productType')?.dirty ||
+          formGroup.get('productType')?.touched)
+      "
+    >
+      <div *ngIf="formGroup.get('productType')?.errors?.required">
+        <small class="input-error-message" id="description-help"
+          >* Campo obrigatório</small
+        >
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!idParam" class="form-content">
+    <label for="inventoryQuantity">Qtd em Estoque</label>
+    <input
+      pInputText
+      id="inventoryQuantity"
+      formControlName="inventoryQuantity"
+      aria-describedby="inventoryQuantity-help"
+    />
+  </div>
+
+  <p-button
+    severity="success"
+    class="button-save"
+    label="Salvar"
+    type="submit"
+    [disabled]="formGroup.invalid"
+    [loading]="saveIsLoading"
+    iconPos="right"
+  ></p-button>
+</form>

@@ -1,0 +1,68 @@
+<p-confirm-dialog key="positionDialog" position="center" />
+<p-toast />
+
+<div class="title">Estoque</div>
+<div class="title">{{ item?.description }}</div>
+<div class="subtitle">Total em estoque: {{ total }} un.</div>
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <div class="form-content">
+    <p-progressbar
+      *ngIf="isLoading"
+      mode="indeterminate"
+      [style]="{ height: '4px' }"
+    />
+
+    <label for="quantity">Quantidade</label>
+    <input
+      pInputText
+      type="number"
+      id="quantity"
+      formControlName="quantity"
+      aria-describedby="quantity-help"
+    />
+    <div
+      *ngIf="
+        formGroup.get('quantity')?.invalid &&
+        (formGroup.get('quantity')?.dirty || formGroup.get('quantity')?.touched)
+      "
+    >
+      <div *ngIf="formGroup.get('quantity')?.errors?.required">
+        <small class="input-error-message" id="quantity-help"
+          >* Campo obrigatório</small
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="form-content">
+    <label for="price">Ação</label>
+    <p-select
+      formControlName="inc"
+      [options]="actions"
+      optionLabel="description"
+      placeholder="Ação"
+      class="w-full md:w-56"
+    />
+    <div
+      *ngIf="
+        formGroup.get('inc')?.invalid &&
+        (formGroup.get('inc')?.dirty || formGroup.get('inc')?.touched)
+      "
+    >
+      <div *ngIf="formGroup.get('inc')?.errors?.required">
+        <small class="input-error-message" id="description-help"
+          >* Campo obrigatório</small
+        >
+      </div>
+    </div>
+  </div>
+  <p-button
+    severity="success"
+    class="button-save"
+    label="Salvar"
+    type="submit"
+    [disabled]="formGroup.invalid"
+    [loading]="saveIsLoading"
+    iconPos="right"
+  ></p-button>
+</form>

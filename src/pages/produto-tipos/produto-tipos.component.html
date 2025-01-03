@@ -1,0 +1,54 @@
+<p-confirm-dialog key="positionDialog" position="center" />
+<p-toast />
+<div class="title">Tipos de Produto</div>
+<p-button
+  label="Criar novo"
+  (onClick)="newItem()"
+  icon="pi pi-plus"
+  iconPos="right"
+  class="add-btn"
+></p-button>
+
+<p-table
+  [value]="items"
+  [tableStyle]="{ 'min-width': '50rem', 'margin-top': '30px' }"
+  [loading]="isLoading"
+>
+  <ng-template #header>
+    <tr>
+      <th>Descrição</th>
+      <th class="td-actions">Ações</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.description }}</td>
+      <td>
+        <div class="table-actions">
+          <p-button
+            label="Editar"
+            icon="pi pi-pencil"
+            iconPos="right"
+            severity="warn"
+            (onClick)="editItem(item.id)"
+          />
+          <p-button
+            label="Deletar"
+            icon="pi pi-trash"
+            iconPos="right"
+            severity="danger"
+            (onClick)="deleteItemOnClick(item)"
+          />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<div>
+  <p-paginator
+    (onPageChange)="pageChange($event)"
+    [first]="first"
+    [rows]="limit"
+    [totalRecords]="total"
+  />
+</div>

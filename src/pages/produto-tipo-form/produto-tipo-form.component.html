@@ -1,0 +1,48 @@
+<p-confirm-dialog key="positionDialog" position="center" />
+<p-toast />
+
+<div class="title">Tipo de Produto</div>
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <div class="form-content">
+    <p-progressbar
+      *ngIf="isLoading"
+      mode="indeterminate"
+      [style]="{ height: '4px' }"
+    />
+
+    <label for="description">Descrição</label>
+    <input
+      pInputText
+      id="description"
+      formControlName="description"
+      aria-describedby="description-help"
+    />
+    <div
+      *ngIf="
+        formGroup.get('description')?.invalid &&
+        (formGroup.get('description')?.dirty ||
+          formGroup.get('description')?.touched)
+      "
+    >
+      <div *ngIf="formGroup.get('description')?.errors?.required">
+        <small class="input-error-message" id="description-help"
+          >* Campo obrigatório</small
+        >
+      </div>
+      <div *ngIf="formGroup.get('description')?.errors?.maxlength">
+        <small class="input-error-message" id="description-help"
+          >* Este campo poder ter no máximo 150 caracteres</small
+        >
+      </div>
+    </div>
+  </div>
+  <p-button
+    severity="success"
+    class="button-save"
+    label="Salvar"
+    type="submit"
+    [disabled]="formGroup.invalid"
+    [loading]="saveIsLoading"
+    iconPos="right"
+  ></p-button>
+</form>

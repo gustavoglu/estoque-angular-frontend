@@ -1,0 +1,15 @@
+.form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 30%;
+    margin-bottom: 20px;
+  }
+  
+  .button-save {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    max-width: 30%;
+  }
+  
